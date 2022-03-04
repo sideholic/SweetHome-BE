@@ -1,8 +1,8 @@
 from django.urls import path, include
-from .views import helloAPI
+from .views import getSubscriptions, postNews
 
 
 urlpatterns = [
-    path("hello/", helloAPI),
-    path("<int:id>/", helloAPI),
+    path("subscription/", getSubscriptions),
+    path("news", postNews),
 ]
