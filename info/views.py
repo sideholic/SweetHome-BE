@@ -5,11 +5,13 @@ from rest_framework.decorators import api_view
 from .models import Info
 from .serializers import InfoSerializer
 from .news_crawler import collect_news
+from .subscription_api import get_lttot_pblanc_list
 
 
 @api_view(['GET'])
-def getSubscriptions(request, startDate, endDate, isNearyBy):
-    return Response()
+def getSubscriptions(request):
+    lttot_pblanc_list = get_lttot_pblanc_list()
+    return Response(lttot_pblanc_list)
 
 
 @api_view(['GET'])
