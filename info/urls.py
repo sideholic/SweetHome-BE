@@ -1,8 +1,8 @@
 from django.urls import path, include
-from .views import getSubscriptions, postNews
+from . import views
 
 
 urlpatterns = [
-    path("subscription/", getSubscriptions),
-    path("news", postNews),
+    path("subscription", views.Subscription.as_view()),
+    path("news", views.News.as_view()),
 ]
