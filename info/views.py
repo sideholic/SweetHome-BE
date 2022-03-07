@@ -1,14 +1,17 @@
+import json
+
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .news_crawler import collect_news
-from .subscription_api import get_lttot_pblanc_list
+from .subscription_api import getApt, saveApt
 
 
 class Subscription(APIView):
     def get(self, request):
-        lttot_pblanc_list = get_lttot_pblanc_list()
-        return Response(lttot_pblanc_list)
+        lttot_pblanc_list = getApt()
+        saveApt(lttot_pblanc_list)
+        return Response(lttot_pblanc_list.json())
 
     def post(self, request, id):
         return Response()
