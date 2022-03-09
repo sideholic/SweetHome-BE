@@ -63,7 +63,29 @@ def saveRemndr(remndr):
     json_data = remndr.json()['data']
 
     for val in json_data:
-        apt_detail = Urbty(val)
-        apt_detail.save()
+        remdrVal = Remndr().from_json(val)
+        remdrVal.save()
 
 
+def saveAptDetail(aptDetail):
+    json_data = aptDetail.json()['data']
+
+    for val in json_data:
+        AptDetailVal = AptDetail().from_json(val)
+        AptDetailVal.save()
+
+
+def saveUrbtyDetail(urbtyDetail):
+    json_data = urbtyDetail.json()['data']
+
+    for val in json_data:
+        UrbtyDetailVal = UrbtyDetail().from_json(val)
+        UrbtyDetailVal.save()
+
+
+def saveRemndrDetail(remndrDetail):
+    json_data = remndrDetail.json()['data']
+
+    for val in json_data:
+        RemndrDetailVal = RemndrDetail().from_json(val)
+        RemndrDetailVal.save()
