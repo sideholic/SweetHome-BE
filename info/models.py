@@ -148,3 +148,135 @@ class Urbty(models.Model):
         self.SUBSCRPT_RCEPT_ENDDE = val['SUBSCRPT_RCEPT_ENDDE']
         self.TOT_SUPLY_HSHLDCO = val['TOT_SUPLY_HSHLDCO']
         return self
+
+
+class Remndr(models.Model):
+    HOUSE_MANAGE_NO = models.IntegerField(primary_key=True)
+    PBLANC_NO = models.IntegerField()
+    HOUSE_NM = models.TextField(null=True)
+    HOUSE_SECD = models.TextField(null=True)
+    HOUSE_SECD_NM = models.TextField(null=True)
+    HSSPLY_ZIP = models.TextField(null=True)
+    HSSPLY_ADRES = models.TextField(null=True)
+    TOT_SUPLY_HSHLDCO = models.IntegerField()
+    RCRIT_PBLANC_DE = models.TextField(null=True)
+    SUBSCRPT_RCEPT_BGNDE = models.TextField(null=True)
+    SUBSCRPT_RCEPT_ENDDE = models.TextField(null=True)
+    SPSPLY_RCEPT_BGNDE = models.TextField(null=True)
+    SPSPLY_RCEPT_ENDDE = models.TextField(null=True)
+    GNRL_RCEPT_BGNDE = models.TextField(null=True)
+    GNRL_RCEPT_ENDDE = models.TextField(null=True)
+    PRZWNER_PRESNATN_DE = models.TextField(null=True)
+    CNTRCT_CNCLS_BGNDE = models.TextField(null=True)
+    CNTRCT_CNCLS_ENDDE = models.TextField(null=True)
+    HMPG_ADRES = models.TextField(null=True)
+    BSNS_MBY_NM = models.TextField(null=True)
+    MDHS_TELNO = models.TextField(null=True)
+    MVN_PREARNGE_YM = models.TextField(null=True)
+
+    def from_json(self, val):
+        self.HOUSE_MANAGE_NO = val['HOUSE_MANAGE_NO']
+        self.PBLANC_NO = val['PBLANC_NO']
+        self.HOUSE_NM = val['HOUSE_NM']
+        self.HOUSE_SECD = val['HOUSE_SECD']
+        self.HOUSE_SECD_NM = val['HOUSE_SECD_NM']
+        self.HSSPLY_ZIP = val['HSSPLY_ZIP']
+        self.HSSPLY_ADRES = val['HSSPLY_ADRES']
+        self.TOT_SUPLY_HSHLDCO = val['TOT_SUPLY_HSHLDCO']
+        self.RCRIT_PBLANC_DE = val['RCRIT_PBLANC_DE']
+        self.SUBSCRPT_RCEPT_BGNDE = val['SUBSCRPT_RCEPT_BGNDE']
+        self.SUBSCRPT_RCEPT_ENDDE = val['SUBSCRPT_RCEPT_ENDDE']
+        self.SPSPLY_RCEPT_BGNDE = val['SPSPLY_RCEPT_BGNDE']
+        self.SPSPLY_RCEPT_ENDDE = val['SPSPLY_RCEPT_ENDDE']
+        self.GNRL_RCEPT_BGNDE = val['GNRL_RCEPT_BGNDE']
+        self.GNRL_RCEPT_ENDDE = val['GNRL_RCEPT_ENDDE']
+        self.PRZWNER_PRESNATN_DE = val['PRZWNER_PRESNATN_DE']
+        self.CNTRCT_CNCLS_BGNDE = val['CNTRCT_CNCLS_BGNDE']
+        self.CNTRCT_CNCLS_ENDDE = val['CNTRCT_CNCLS_ENDDE']
+        self.HMPG_ADRES = val['HMPG_ADRES']
+        self.BSNS_MBY_NM = val['BSNS_MBY_NM']
+        self.MDHS_TELNO = val['MDHS_TELNO']
+        self.MVN_PREARNGE_YM = val['MVN_PREARNGE_YM']
+        return self
+
+
+class AptDetail(models.Model):
+    def from_json(self, val):
+        self.HOUSE_MANAGE_NO = val['HOUSE_MANAGE_NO']
+        self.PBLANC_NO = val['PBLANC_NO']
+        self.MODEL_NO = val['MODEL_NO']
+        self.HOUSE_TY = val['HOUSE_TY']
+        self.SUPLY_AR = val['SUPLY_AR']
+        self.SUPLY_HSHLDCO = val['SUPLY_HSHLDCO']
+        self.SPSPLY_HSHLDCO = val['SPSPLY_HSHLDCO']
+        self.MNYCH_HSHLDCO = val['MNYCH_HSHLDCO']
+        self.NWWDS_HSHLDCO = val['NWWDS_HSHLDCO']
+        self.LFE_FRST_HSHLDCO = val['LFE_FRST_HSHLDCO']
+        self.OLD_PARNTS_SUPORT_HSHLDCO = val['OLD_PARNTS_SUPORT_HSHLDCO']
+        self.INSTT_RECOMEND_HSHLDCO = val['INSTT_RECOMEND_HSHLDCO']
+        self.ETC_HSHLDCO = val['ETC_HSHLDCO']
+        self.TRANSR_INSTT_ENFSN_HSHLDCO = val['TRANSR_INSTT_ENFSN_HSHLDCO']
+        self.LTTOT_TOP_AMOUNT = val['LTTOT_TOP_AMOUNT']
+        return self
+
+    HOUSE_MANAGE_NO = models.IntegerField(null=True)
+    PBLANC_NO = models.IntegerField(primary_key=True)
+    MODEL_NO = models.CharField(null=True, max_length=300)
+    HOUSE_TY = models.CharField(null=True, max_length=300)
+    SUPLY_AR = models.CharField(null=True, max_length=300)
+    SUPLY_HSHLDCO = models.IntegerField(null=True)
+    SPSPLY_HSHLDCO = models.IntegerField(null=True)
+    MNYCH_HSHLDCO = models.IntegerField(null=True)
+    NWWDS_HSHLDCO = models.IntegerField(null=True)
+    LFE_FRST_HSHLDCO = models.IntegerField(null=True)
+    OLD_PARNTS_SUPORT_HSHLDCO = models.IntegerField(null=True)
+    INSTT_RECOMEND_HSHLDCO = models.IntegerField(null=True)
+    ETC_HSHLDCO = models.IntegerField(null=True)
+    TRANSR_INSTT_ENFSN_HSHLDCO = models.IntegerField(null=True)
+    LTTOT_TOP_AMOUNT = models.CharField(null=True, max_length=300)
+
+
+class UrbtyDetail(models.Model):
+    def from_json(self, val):
+        self.PBLANC_NO = val['PBLANC_NO']
+        self.HOUSE_MANAGE_NO = val['HOUSE_MANAGE_NO']
+        self.MODEL_NO = val['MODEL_NO']
+        self.GP = val['GP']
+        self.TP = val['TP']
+        self.SUPLY_AR = val['SUPLY_AR']
+        self.SUPLY_HSHLDCO = val['SUPLY_HSHLDCO']
+        self.SUPLY_AMOUNT = val['SUPLY_AMOUNT']
+        self.SUBSCRPT_REQST_AMOUNT = val['SUBSCRPT_REQST_AMOUNT']
+        return self
+
+    PBLANC_NO = models.IntegerField(primary_key=True)
+    HOUSE_MANAGE_NO = models.IntegerField(null=True)
+    MODEL_NO = models.CharField(null=True, max_length=300)
+    GP = models.CharField(null=True, max_length=300)
+    TP = models.CharField(null=True, max_length=300)
+    SUPLY_AR = models.CharField(null=True, max_length=300)
+    SUPLY_HSHLDCO = models.IntegerField(null=True)
+    SUPLY_AMOUNT = models.CharField(null=True, max_length=300)
+    SUBSCRPT_REQST_AMOUNT = models.CharField(null=True, max_length=300)
+
+
+class RemndrDetail(models.Model):
+    def from_json(self, val):
+        self.HOUSE_MANAGE_NO = val['HOUSE_MANAGE_NO']
+        self.PBLANC_NO = val['PBLANC_NO']
+        self.MODEL_NO = val['MODEL_NO']
+        self.HOUSE_TY = val['HOUSE_TY']
+        self.SUPLY_AR = val['SUPLY_AR']
+        self.SUPLY_HSHLDCO = val['SUPLY_HSHLDCO']
+        self.SPSPLY_HSHLDCO = val['SPSPLY_HSHLDCO']
+        self.LTTOT_TOP_AMOUNT = val['LTTOT_TOP_AMOUNT']
+        return self
+
+    HOUSE_MANAGE_NO = models.IntegerField(null=True)
+    PBLANC_NO = models.IntegerField(primary_key=True)
+    MODEL_NO = models.CharField(null=True, max_length=300)
+    HOUSE_TY = models.CharField(null=True, max_length=300)
+    SUPLY_AR = models.CharField(null=True, max_length=300)
+    SUPLY_HSHLDCO = models.IntegerField(null=True)
+    SPSPLY_HSHLDCO = models.IntegerField(null=True)
+    LTTOT_TOP_AMOUNT = models.CharField(null=True, max_length=300)
