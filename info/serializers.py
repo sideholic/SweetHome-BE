@@ -91,3 +91,85 @@ class UrbtySerializer(serializers.ModelSerializer):
             'SUBSCRPT_RCEPT_ENDDE',
             'TOT_SUPLY_HSHLDCO',
         )
+
+
+class RemndrSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Remndr
+        fields = (
+            'HOUSE_MANAGE_NO',
+            'PBLANC_NO',
+            'HOUSE_NM',
+            'HOUSE_SECD',
+            'HOUSE_SECD_NM',
+            'HSSPLY_ZIP',
+            'HSSPLY_ADRES',
+            'TOT_SUPLY_HSHLDCO',
+            'RCRIT_PBLANC_DE',
+            'SUBSCRPT_RCEPT_BGNDE',
+            'SUBSCRPT_RCEPT_ENDDE',
+            'SPSPLY_RCEPT_BGNDE',
+            'SPSPLY_RCEPT_ENDDE',
+            'GNRL_RCEPT_BGNDE',
+            'GNRL_RCEPT_ENDDE',
+            'PRZWNER_PRESNATN_DE',
+            'CNTRCT_CNCLS_BGNDE',
+            'CNTRCT_CNCLS_ENDDE',
+            'HMPG_ADRES',
+            'BSNS_MBY_NM',
+            'MDHS_TELNO',
+            'MVN_PREARNGE_YM'
+        )
+
+
+class AptDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AptDetail
+        fields = (
+            'HOUSE_MANAGE_NO',
+            'PBLANC_NO',
+            'MODEL_NO',
+            'HOUSE_TY',
+            'SUPLY_AR',
+            'SUPLY_HSHLDCO',
+            'SPSPLY_HSHLDCO',
+            'MNYCH_HSHLDCO',
+            'NWWDS_HSHLDCO',
+            'LFE_FRST_HSHLDCO',
+            'OLD_PARNTS_SUPORT_HSHLDCO',
+            'INSTT_RECOMEND_HSHLDCO',
+            'ETC_HSHLDCO',
+            'TRANSR_INSTT_ENFSN_HSHLDCO',
+            'LTTOT_TOP_AMOUNT',
+        )
+
+
+class UrbtyDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UrbtyDetail
+        fields = (
+            'PBLANC_NO',
+            'HOUSE_MANAGE_NO',
+            'MODEL_NO',
+            'GP',
+            'TP',
+            'SUPLY_AR',
+            'SUPLY_HSHLDCO',
+            'SUPLY_AMOUNT',
+            'SUBSCRPT_REQST_AMOUNT',
+        )
+
+
+class RemndrDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RemndrDetail
+        fields = (
+            'HOUSE_MANAGE_NO',
+            'PBLANC_NO',
+            'MODEL_NO',
+            'HOUSE_TY',
+            'SUPLY_AR',
+            'SUPLY_HSHLDCO',
+            'SPSPLY_HSHLDCO',
+            'LTTOT_TOP_AMOUNT',
+        )
