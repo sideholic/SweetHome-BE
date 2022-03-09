@@ -6,3 +6,4 @@ from .models import *
 admin.site.register(Info)
 admin.site.register(News)
 admin.site.register(Apt)
+admin.site.register(Urbty)
