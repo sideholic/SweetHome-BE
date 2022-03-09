@@ -4,14 +4,16 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .news_crawler import collect_news
-from .subscription_api import getApt, saveApt
+from .subscription_api import *
 
 
 class Subscription(APIView):
     def get(self, request):
         lttot_pblanc_list = getApt()
+        save_urbty_list = getUrbyty()
         saveApt(lttot_pblanc_list)
-        return Response(lttot_pblanc_list.json())
+        saveUrbty(save_urbty_list)
+        return Response("complete")
 
     def post(self, request, id):
         return Response()
