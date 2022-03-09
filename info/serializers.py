@@ -63,3 +63,31 @@ class AptSerializer(serializers.ModelSerializer):
             'SUBSCRPT_AREA_CODE_NM',
             'TOT_SUPLY_HSHLDCO',
         )
+
+
+class UrbtySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Urbty
+        fields = (
+            'BSNS_MBY_NM',
+            'CNTRCT_CNCLS_BGNDE',
+            'CNTRCT_CNCLS_ENDDE',
+            'HMPG_ADRES',
+            'HOUSE_DTL_SECD',
+            'HOUSE_DTL_SECD_NM',
+            'HOUSE_MANAGE_NO',
+            'HOUSE_NM',
+            'HOUSE_SECD',
+            'HOUSE_SECD_NM',
+            'HSSPLY_ADRES',
+            'HSSPLY_ZIP',
+            'MDHS_TELNO',
+            'MVN_PREARNGE_YM',
+            'PBLANC_NO',
+            'PRZWNER_PRESNATN_DE',
+            'RCRIT_PBLANC_DE',
+            'SEARCH_HOUSE_SECD',
+            'SUBSCRPT_RCEPT_BGNDE',
+            'SUBSCRPT_RCEPT_ENDDE',
+            'TOT_SUPLY_HSHLDCO',
+        )
