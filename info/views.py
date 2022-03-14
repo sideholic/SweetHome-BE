@@ -8,58 +8,8 @@ from rest_framework.decorators import api_view
 from .news_crawler import collect_news
 from .subscription_api import *
 
-
-def nearby(request):
-    # 현재위치 기반 찾기
-    x = request.GET.get('x', '126.8136053')
-    y = request.GET.get('y', '37.5651639')
-    url = "https://dapi.kakao.com/v2/local/geo/coord2regioncode.json?x=" + x + "&y=" + y
-    headers = {"Authorization": "KakaoAK afdb43b5fe201bb1deab2af24e440efa"}
-    api_test = requests.get(url, headers=headers)
-    region = api_test.json()['documents'][0]['region_1depth_name'] + " " + api_test.json()['documents'][0]['region_2depth_name']
-    apts = Apt.objects.filter(HSSPLY_ADRES__contains=region)
-    urbties = Urbty.objects.filter(HSSPLY_ADRES__contains=region)
-    remndres = Remndr.objects.filter(HSSPLY_ADRES__contains=region)
-
-    apt_list = []
-    for apt in apts:
-        apt_one = {
-            'manage_no': apt.HOUSE_MANAGE_NO,
-            'title': apt.BSNS_MBY_NM,
-            'location': apt.HSSPLY_ADRES,
-            'rcept_bgnde': apt.RCEPT_BGNDE,
-            'rcept_endde': apt.RCEPT_ENDDE,
-            'type_kor': '아파트',
-            'type_eng': 'apt',
-        }
-        apt_list.append(apt_one)
-    for urbty in urbties:
-        urbty_one = {
-            'manage_no': urbty.HOUSE_MANAGE_NO,
-            'title': urbty.BSNS_MBY_NM,
-            'location': urbty.HSSPLY_ADRES,
-            'rcept_bgnde': urbty.SUBSCRPT_RCEPT_BGNDE,
-            'rcept_endde': urbty.SUBSCRPT_RCEPT_ENDDE,
-            'type_kor': '오피스텔/도시형/민간임대',
-            'type_eng': 'urbty',
-        }
-        apt_list.append(urbty_one)
-    for remndr in remndres:
-        remndr_one = {
-            'manage_no': remndr.HOUSE_MANAGE_NO,
-            'title': remndr.BSNS_MBY_NM,
-            'location': remndr.HSSPLY_ADRES,
-            'rcept_bgnde': remndr.SUBSCRPT_RCEPT_BGNDE,
-            'rcept_endde': remndr.SUBSCRPT_RCEPT_ENDDE,
-            'type_kor': '무순위/잔여세대',
-            'type_eng': 'remndr',
-        }
-        apt_list.append(remndr_one)
-
-    return JsonResponse({
-        'value': sorted(apt_list, key=lambda i: i['rcept_bgnde'], reverse=True),
-        'timestamp': datetime.today()
-    })
+from drf_yasg.utils import swagger_auto_schema
+from api.serializers import NearbySerializer
 
 
 class Subscription(APIView):
@@ -166,6 +116,61 @@ def getDetail(request, id):
 
     return JsonResponse({
         'value': detail_value_list,
+        'timestamp': datetime.today()
+    })
+
+
+@api_view(['GET'])
+@swagger_auto_schema(query_serializer=NearbySerializer)
+def nearby(request):
+    # 현재위치 기반 찾기
+    x = request.GET.get('x', '126.8136053')
+    y = request.GET.get('y', '37.5651639')
+    url = "https://dapi.kakao.com/v2/local/geo/coord2regioncode.json?x=" + x + "&y=" + y
+    headers = {"Authorization": "KakaoAK afdb43b5fe201bb1deab2af24e440efa"}
+    api_test = requests.get(url, headers=headers)
+    region = api_test.json()['documents'][0]['region_1depth_name'] + " " + api_test.json()['documents'][0]['region_2depth_name']
+    apts = Apt.objects.filter(HSSPLY_ADRES__contains=region)
+    urbties = Urbty.objects.filter(HSSPLY_ADRES__contains=region)
+    remndres = Remndr.objects.filter(HSSPLY_ADRES__contains=region)
+
+    apt_list = []
+    for apt in apts:
+        apt_one = {
+            'manage_no': apt.HOUSE_MANAGE_NO,
+            'title': apt.BSNS_MBY_NM,
+            'location': apt.HSSPLY_ADRES,
+            'rcept_bgnde': apt.RCEPT_BGNDE,
+            'rcept_endde': apt.RCEPT_ENDDE,
+            'type_kor': '아파트',
+            'type_eng': 'apt',
+        }
+        apt_list.append(apt_one)
+    for urbty in urbties:
+        urbty_one = {
+            'manage_no': urbty.HOUSE_MANAGE_NO,
+            'title': urbty.BSNS_MBY_NM,
+            'location': urbty.HSSPLY_ADRES,
+            'rcept_bgnde': urbty.SUBSCRPT_RCEPT_BGNDE,
+            'rcept_endde': urbty.SUBSCRPT_RCEPT_ENDDE,
+            'type_kor': '오피스텔/도시형/민간임대',
+            'type_eng': 'urbty',
+        }
+        apt_list.append(urbty_one)
+    for remndr in remndres:
+        remndr_one = {
+            'manage_no': remndr.HOUSE_MANAGE_NO,
+            'title': remndr.BSNS_MBY_NM,
+            'location': remndr.HSSPLY_ADRES,
+            'rcept_bgnde': remndr.SUBSCRPT_RCEPT_BGNDE,
+            'rcept_endde': remndr.SUBSCRPT_RCEPT_ENDDE,
+            'type_kor': '무순위/잔여세대',
+            'type_eng': 'remndr',
+        }
+        apt_list.append(remndr_one)
+
+    return JsonResponse({
+        'value': sorted(apt_list, key=lambda i: i['rcept_bgnde'], reverse=True),
         'timestamp': datetime.today()
     })
 
