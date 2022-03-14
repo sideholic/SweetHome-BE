@@ -1,3 +1,5 @@
+import json
+
 from django.db import models
 
 
@@ -201,6 +203,9 @@ class Remndr(models.Model):
 
 
 class AptDetail(models.Model):
+    class Meta:
+        unique_together = (('PBLANC_NO', 'MODEL_NO'),)
+
     def from_json(self, val):
         self.HOUSE_MANAGE_NO = val['HOUSE_MANAGE_NO']
         self.PBLANC_NO = val['PBLANC_NO']
@@ -219,8 +224,9 @@ class AptDetail(models.Model):
         self.LTTOT_TOP_AMOUNT = val['LTTOT_TOP_AMOUNT']
         return self
 
+    ID = models.IntegerField(primary_key=True)
     HOUSE_MANAGE_NO = models.IntegerField(null=True)
-    PBLANC_NO = models.IntegerField(primary_key=True)
+    PBLANC_NO = models.IntegerField()
     MODEL_NO = models.CharField(null=True, max_length=300)
     HOUSE_TY = models.CharField(null=True, max_length=300)
     SUPLY_AR = models.CharField(null=True, max_length=300)
@@ -235,8 +241,15 @@ class AptDetail(models.Model):
     TRANSR_INSTT_ENFSN_HSHLDCO = models.IntegerField(null=True)
     LTTOT_TOP_AMOUNT = models.CharField(null=True, max_length=300)
 
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__,
+                          sort_keys=True, indent=4)
+
 
 class UrbtyDetail(models.Model):
+    class Meta:
+        unique_together = (('PBLANC_NO', 'TP'),)
+
     def from_json(self, val):
         self.PBLANC_NO = val['PBLANC_NO']
         self.HOUSE_MANAGE_NO = val['HOUSE_MANAGE_NO']
@@ -249,7 +262,8 @@ class UrbtyDetail(models.Model):
         self.SUBSCRPT_REQST_AMOUNT = val['SUBSCRPT_REQST_AMOUNT']
         return self
 
-    PBLANC_NO = models.IntegerField(primary_key=True)
+    ID = models.IntegerField(primary_key=True)
+    PBLANC_NO = models.IntegerField()
     HOUSE_MANAGE_NO = models.IntegerField(null=True)
     MODEL_NO = models.CharField(null=True, max_length=300)
     GP = models.CharField(null=True, max_length=300)
@@ -261,6 +275,9 @@ class UrbtyDetail(models.Model):
 
 
 class RemndrDetail(models.Model):
+    class Meta:
+        unique_together = (('PBLANC_NO', 'MODEL_NO'),)
+
     def from_json(self, val):
         self.HOUSE_MANAGE_NO = val['HOUSE_MANAGE_NO']
         self.PBLANC_NO = val['PBLANC_NO']
@@ -272,8 +289,9 @@ class RemndrDetail(models.Model):
         self.LTTOT_TOP_AMOUNT = val['LTTOT_TOP_AMOUNT']
         return self
 
+    ID = models.IntegerField(primary_key=True)
     HOUSE_MANAGE_NO = models.IntegerField(null=True)
-    PBLANC_NO = models.IntegerField(primary_key=True)
+    PBLANC_NO = models.IntegerField()
     MODEL_NO = models.CharField(null=True, max_length=300)
     HOUSE_TY = models.CharField(null=True, max_length=300)
     SUPLY_AR = models.CharField(null=True, max_length=300)
