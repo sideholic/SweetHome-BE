@@ -1,6 +1,10 @@
 from rest_framework import serializers
 
 
-class NearbySerializer(serializers.Serializer):
-    x = serializers.CharField(max_length=100),
-    y = serializers.CharField(max_length=100)
+class nearby_serializer(serializers.Serializer):
+    x = serializers.CharField(required=False)
+    y = serializers.CharField(required=False)
+
+
+class detail_serializer(serializers.Serializer):
+    subject = serializers.CharField(default='apt')
