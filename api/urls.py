@@ -30,6 +30,7 @@ schema_view = get_schema_view(
         contact=openapi.Contact(email="이메일"),
         license=openapi.License(name=""),
     ),
+    url='https://sweethome.dongpark.land/',
     validators=['flex'],
     public=True,
     permission_classes=(AllowAny,)
